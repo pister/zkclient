@@ -71,8 +71,10 @@ public class ZkClient implements Watcher {
     private Thread _zookeeperEventThread;
     private ZkSerializer _zkSerializer;
 
+    private static final int DEFAULT_TIMEOUT_IN_MS = 3 * 60 * 1000;
+
     public ZkClient(String serverstring) {
-        this(serverstring, Integer.MAX_VALUE);
+        this(serverstring, DEFAULT_TIMEOUT_IN_MS);
     }
 
     public ZkClient(String zkServers, int connectionTimeout) {
@@ -88,7 +90,7 @@ public class ZkClient implements Watcher {
     }
 
     public ZkClient(IZkConnection connection) {
-        this(connection, Integer.MAX_VALUE);
+        this(connection, DEFAULT_TIMEOUT_IN_MS);
     }
 
     public ZkClient(IZkConnection connection, int connectionTimeout) {
